@@ -1,0 +1,29 @@
+{
+    "name": "constanze-standard/request-handler",
+    "description": "The PSR-15 request handler.",
+    "type": "library",
+    "license": "Apache-2.0",
+    "keywords": ["psr", "PSR-15", "middleware", "request-handler", "stack"],
+    "minimum-stability": "stable",
+    "prefer-stable": true,
+    "authors": [
+        {
+            "name": "Speed Sonic",
+            "email": "blldxt@gmail.com"
+        }
+    ],
+    "require": {
+        "php": ">=7.1.0",
+        "psr/http-message": "^1.0",
+        "psr/http-server-middleware": "^1.0"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "6.5.14",
+        "guzzlehttp/psr7": "^1.6"
+    },
+    "autoload": {
+        "psr-4": {
+            "ConstanzeStandard\\RequestHandler\\": "src"
+        }
+    }
+}
