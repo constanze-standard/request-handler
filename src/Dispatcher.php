@@ -18,6 +18,7 @@
 
 namespace ConstanzeStandard\RequestHandler;
 
+use ConstanzeStandard\RequestHandler\Interfaces\MiddlewareDispatcherInterface;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
 use Psr\Http\Server\MiddlewareInterface;
@@ -28,7 +29,7 @@ use Psr\Http\Server\RequestHandlerInterface;
  * 
  * @author alex <omytty.alex@gmail.com>
  */
-class Dispatcher implements RequestHandlerInterface
+class Dispatcher implements MiddlewareDispatcherInterface
 {
     /**
      * The outermost request handler.
@@ -69,10 +70,13 @@ class Dispatcher implements RequestHandlerInterface
      * Add a PSR-15 middleware.
      * 
      * @param MiddlewareInterface $middleware
+     * 
+     * @return MiddlewareInterface
      */
-    public function addMiddleware(MiddlewareInterface $middleware)
+    public function addMiddleware(MiddlewareInterface $middleware): MiddlewareInterface
     {
         $nextRequestHandler = $this->currentRequestHandler;
         $this->currentRequestHandler = new ProcessRequestHandler($middleware, $nextRequestHandler);
+        return $middleware;
     }
 }
